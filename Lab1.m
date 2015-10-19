@@ -53,9 +53,3 @@ plot(tau,idealfilteredACF(zeropoint:zeropoint+(length(tau)-1)));
 hold on
 plot(tau, ryHighorder, 'r')
 hold off
-
-%plot PSD with low order filtering
-figure(1),
-plot(0:1/(length(filteredPSD)-1):1, real(filteredPSD) , theta, RyLoworder , 'r' )
-legend('Estimated PSD','Theoretical PSD')
-title('Comparison of estimated PSD and theoretical PSD filtered with low order filter')

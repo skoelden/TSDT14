@@ -30,6 +30,7 @@ acf = acf2;
 
 if ~exist('option', 'var')
     per = abs(fft(acf));
+    
 elseif strcmp(option, 's')
     midway = ceil(size(acf2)/2);
     ham = zeros(size(acf2));

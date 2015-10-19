@@ -99,13 +99,13 @@ title('The histogram of the input')
 
 figure(8)
 histogram(squarednoise)
-title('Histogram of the output, squarer')
+title('Comparison of the histogram output, squarer')
 
 figure(9)
 histogram(rectifiednoise)
-title('Histogram of the output, halfway rectifier')
+title('Comparison of the histogram output, halfway rectifier')
 
 figure(10)
 histogram(AMSMnoise)
-title('Histogram of the output, AMSC-modulator')
+title('Comparison of the histogram output, AMSC-modulator')
 
