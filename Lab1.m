@@ -1,5 +1,6 @@
 close all
 clear all
+clc
 constants
 tic
 RyLoworder = R0*abs((1-a+a*exp(j*2*pi*theta))).^2;
@@ -18,6 +19,7 @@ end
 idealfilterednoise = filter(bbutter, abutter, noise);
 
 [BARfilteredACF, BARfilteredPSD] = ACFe(filterednoise, 'bar');
+[BARidealfilteredACF, BARidealfilteredPSD] = ACFe(idealfilterednoise, 'bar');
 
 [BARsmoothedfilteredACF, BARsmoothedfilteredPSD] = ACFe(filterednoise, 'bar', 's');
 [BARsmoothedidealfilteredACF, BARsmoothedidealfilteredPSD] = ACFe(idealfilterednoise, 'bar', 's');
@@ -43,14 +45,15 @@ BARaveragedidealfilteredPSD = tmp/bins;
 
 toc
 %%
+fontSize = 16;
 
 figure(1)
 zeropoint = ceil(length(BARfilteredACF)/2);
 taus = -(length(BARfilteredACF)-zeropoint):(length(BARfilteredACF)-zeropoint);
 plot(taus,BARfilteredACF)
-title('Bartletts estimate of low order filtered noise')
+title('Bartletts estimate for low order filtered noise')
 xlabel('Delay (samples)')
-print('TSDT14/Images/BARloACF', '-dpng')
+set(gca,'FontSize',fontSize)
 
 figure(2)
 zeropoint = ceil(length(BARfilteredACF)/2);
@@ -58,51 +61,86 @@ stem(tau,BARfilteredACF(zeropoint:zeropoint+20))
 hold on
 stem(tau,ryLoworder(1:length(tau)),'rx'); 
 hold off
-title('Bartletts estimate of low order filtered noise')
+title('Bartletts estimate for low order filtered noise')
 xlabel('Delay (samples)')
-print('TSDT14/Images/BTloACFfirst20', '-dpng')
+legend('Estimated', 'Theoretical')
+set(gca,'FontSize',fontSize)
 
 figure(3)
+zeropoint = ceil(length(BARidealfilteredACF)/2);
+taus = -(length(BARidealfilteredACF)-zeropoint):(length(BARidealfilteredACF)-zeropoint);
+plot(taus,BARfilteredACF)
+title('Bartletts estimate for high order filtered noise')
+xlabel('Delay (samples)')
+set(gca,'FontSize',fontSize)
+
+figure(4)
+zeropoint = ceil(length(BARidealfilteredACF)/2);
+stem(tau,BARidealfilteredACF(zeropoint:zeropoint+20))
+hold on
+stem(tau,ryHighorder(1:length(tau)),'rx'); 
+hold off
+title('Bartletts estimate for high order filtered noise')
+xlabel('Delay (samples)')
+legend('Estimated', 'Theoretical')
+set(gca,'FontSize',fontSize)
+
+figure(5)
 plot(0:1/(length(BARfilteredPSD)-1):1, BARfilteredPSD)
 hold on
 plot(theta, RyLoworder, 'r')
 hold off
-title('PSD from Bartletts estimate')
+title('PSD of low order filtered noise, raw')
 xlabel('Normalized frequency, \theta')
-print('TSDT14/Images/BARloACF', '-dpng')
+legend('Estimated', 'Theoretical')
+set(gca,'FontSize',fontSize)
 
-figure(4)
+figure(6)
 plot(0:1/(length(BARsmoothedfilteredPSD)-1):1, BARsmoothedfilteredPSD)
 hold on
 plot(theta, RyLoworder, 'r')
 hold off
-title('PSD from Bartletts estimate, smoothed')
+title('PSD of low order filtered noise, smoothed')
 xlabel('Normalized frequency, \theta')
-print('TSDT14/Images/BTloPSDsmoothed', '-dpng')
+legend('Estimated', 'Theoretical')
+set(gca,'FontSize',fontSize)
 
-figure(5)
+figure(7)
 plot(0:1/(length(BARaveragedfilteredPSD)-1):1, BARaveragedfilteredPSD)
 hold on
 plot(theta, RyLoworder, 'r')
 hold off
-title('PSD from Bartletts estimate, averaged')
+title('PSD of low order filtered noise, averaged')
 xlabel('Normalized frequency, \theta')
-print('TSDT14/Images/BARloPSDsmoothed', '-dpng')
+legend('Estimated', 'Theoretical')
+set(gca,'FontSize',fontSize)
 
-figure(6)
+figure(8)
+plot(0:1/(length(BARidealfilteredPSD)-1):1, BARidealfilteredPSD)
+hold on
+plot(theta, RyHighorder, 'r')
+hold off
+title('PSD of high order filtered noise, raw')
+xlabel('Normalized frequency, \theta')
+legend('Estimated', 'Theoretical')
+set(gca,'FontSize',fontSize)
+
+figure(9)
 plot(0:1/(length(BARsmoothedidealfilteredPSD)-1):1, BARsmoothedidealfilteredPSD)
 hold on
 plot(theta, RyHighorder, 'r')
 hold off
-title('PSD from Bartletts estimate, smoothed')
+title('PSD of high order filtered noise, smoothed')
 xlabel('Normalized frequency, \theta')
-print('TSDT14/Images/BARhoPSDsmoothed', '-dpng')
+legend('Estimated', 'Theoretical')
+set(gca,'FontSize',fontSize)
 
-figure(7)
+figure(10)
 plot(0:1/(length(BARaveragedidealfilteredPSD)-1):1, BARaveragedidealfilteredPSD)
 hold on
 plot(theta, RyHighorder, 'r')
 hold off
-title('PSD from Bartletts estimate, averaged')
+title('PSD of high order filtered noise, averaged')
 xlabel('Normalized frequency, \theta')
-print('TSDT14/Images/BARhoPSDsmoothed', '-dpng')
+legend('Estimated', 'Theoretical')
+set(gca,'FontSize',fontSize)
