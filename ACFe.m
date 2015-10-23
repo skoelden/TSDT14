@@ -1,5 +1,9 @@
-function [acf per] = ACFe(in, type, option)
-L = 101;
+function [acf per] = ACFe(in, type, option, winlen)
+if exist('winlen', 'var')
+    L = winlen;
+else
+    L = 101;
+end
 N = length(in);
 acf = zeros(N,1);
 
