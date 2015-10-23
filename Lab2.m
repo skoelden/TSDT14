@@ -1,6 +1,7 @@
 close all
 clear all
 constants
+fontSize = 10.5;
 
 %filter time discrete
 RyLoworder = R0*abs((1-a+a*exp(1j*2*pi*theta))).^2;
@@ -48,6 +49,7 @@ plot(0:1/(length(RySquare)-1):1, RySquare, 'r')
 hold off
 ylim([0, 0.4]),legend('Raw estimate', 'Theoretical'), title ('Raw estimate of Squared function')
 xlabel('Normalized frequency, \theta')
+set(gca,'FontSize',fontSize)
 
 figure (2)
 plot(0:1/(length(rawrectifiedPSD)-1):1, rawrectifiedPSD)
@@ -56,6 +58,7 @@ plot(0:1/(length(RyRectified)-1):1, RyRectified, 'r')
 hold off
 ylim([0, 0.4]), legend('Raw estimate', 'Theoretical'), title ('Raw estimate of Half-way rectified')
 xlabel('Normalized frequency, \theta')
+set(gca,'FontSize',fontSize)
 
 figure (3)
 plot(0:1/(length(rawAMSMPSD)-1):1, rawAMSMPSD)
@@ -64,6 +67,7 @@ plot(0:1/(length(RyAMSM)-1):1, RyAMSM, 'r')
 hold off
 ylim([0, 0.4]), legend('Raw estimate', 'Theoretical'), title ('Raw estimate of AM-SC modulator')
 xlabel('Normalized frequency, \theta')
+set(gca,'FontSize',fontSize)
 
 %% Smoothed estimates of the PSDs
 figure (4)
@@ -74,6 +78,7 @@ hold off
 ylim([0, 0.4]), legend('Estimate', 'Theoretical');
 title('Comparison of estimated and theoretical PSD for the squarer function')
 xlabel('Normalized frequency, \theta')
+set(gca,'FontSize',fontSize)
 
 figure(5)
 plot(0:1/(length(rectifiedPSD)-1):1, rectifiedPSD)
@@ -83,6 +88,8 @@ hold off
 ylim([0, 0.4]), legend('Estimate', 'Theoretical');
 title('Comparison of estimated and theoretical PSD for the half-way rectifier')
 xlabel('Normalized frequency, \theta')
+set(gca,'FontSize',fontSize)
+
 figure(6)
 plot(0:1/(length(AMSMPSD)-1):1, AMSMPSD)
 hold on
@@ -91,21 +98,26 @@ hold off
 ylim([0, 0.4]), legend('Estimate', 'Theoretical');
 title('Comparison of estimated and theoretical PSD for the AM-SC modulator')
 xlabel('Normalized frequency, \theta')
+set(gca,'FontSize',fontSize)
 
 %% Histograms of the outputs
 figure(7)
 histogram(noise)
 title('The histogram of the input')
+set(gca,'FontSize',fontSize)
 
 figure(8)
 histogram(squarednoise)
 title('Histogram of the output, squarer')
+set(gca,'FontSize',fontSize)
 
 figure(9)
 histogram(rectifiednoise)
 title('Histogram of the output, halfway rectifier')
+set(gca,'FontSize',fontSize)
 
 figure(10)
 histogram(AMSMnoise)
 title('Histogram of the output, AMSC-modulator')
+set(gca,'FontSize',fontSize)
 
