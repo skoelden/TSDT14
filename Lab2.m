@@ -49,7 +49,7 @@ hold on
 plot(0:1/(length(RySquare)-1):1, RySquare, 'r')
 hold off
 ylim([0, 0.5])
-legend('Raw estimate', 'Theoretical'), title ('Raw estimate of Squared function')
+legend('Estimate', 'Theoretical'), title ('PSD of squarer, raw vs. theoretical ')
 xlabel('Normalized frequency, \theta')
 set(gca,'FontSize',fontSize)
 
@@ -58,7 +58,7 @@ plot(0:1/(length(rawrectifiedPSD)-1):1, rawrectifiedPSD)
 hold on
 plot(0:1/(length(RyRectified)-1):1, RyRectified, 'r')
 hold off
-ylim([0, 0.4]),legend('Raw estimate', 'Theoretical'), title ('Raw estimate of Half-wave rectified')
+ylim([0, 0.4]),legend('Estimate', 'Theoretical'), title ('PSD of half-wave, raw vs. theoretical')
 xlabel('Normalized frequency, \theta')
 set(gca,'FontSize',fontSize)
 
@@ -67,7 +67,7 @@ plot(0:1/(length(rawAMSMPSD)-1):1, rawAMSMPSD)
 hold on
 plot(0:1/(length(RyAMSM)-1):1, RyAMSM, 'r')
 hold off
-ylim([0, 0.4]),legend('Raw estimate', 'Theoretical'), title ('Raw estimate of AM-SC modulator')
+ylim([0, 0.4]),legend('Estimate', 'Theoretical'), title ('PSD of Am-SC modulator, raw vs. theoretical')
 xlabel('Normalized frequency, \theta')
 set(gca,'FontSize',fontSize)
 
@@ -78,7 +78,7 @@ hold on
 plot(0:1/(length(RySquare)-1):1, RySquare, 'r')
 hold off
 ylim([0, 0.6]), legend('Estimate', 'Theoretical');
-title('Estimated versus theoretical PSD for the squarer function')
+title('PSD of squarer, smoothed vs. theoretical')
 xlabel('Normalized frequency, \theta')
 set(gca,'FontSize',fontSize)
 
@@ -88,7 +88,7 @@ hold on
 plot(0:1/(length(RyRectified)-1):1, RyRectified, 'r')
 hold off
 ylim([0, 0.4]), legend('Estimate', 'Theoretical');
-title('Estimated versus theoretical PSD for the half-wave rectifier')
+title('PSD of hald-wave, smoothed vs. theoretical')
 xlabel('Normalized frequency, \theta')
 set(gca,'FontSize',fontSize)
 
@@ -98,7 +98,7 @@ hold on
 plot(0:1/(length(RyAMSM)-1):1, RyAMSM, 'r')
 hold off
 ylim([0, 0.4]), legend('Estimate', 'Theoretical');
-title('Estimated versus theoretical PSD for the AM-SC modulator')
+title('PSD of squarer, smoothed vs. theoretical')
 xlabel('Normalized frequency, \theta')
 set(gca,'FontSize',fontSize)
 
