@@ -41,7 +41,7 @@ AMSMnoise = idealfilterednoise.*cos(2*pi*omega0*n)';
 %zeropoint = ceil(length(squaredACF)/2);
 
 %% raw estimates of the PSDs
-fontSize = 12;
+fontSize = 16;
 
 figure (1)
 plot(0:1/(length(rawsquaredPSD)-1):1, rawsquaredPSD)
@@ -110,23 +110,30 @@ xlabel('Normalized frequency, \theta')
 set(gca,'FontSize',fontSize)
 %% Histograms of the outputs
 figure(8)
-histogram(noise)
+h1 = histogram(noise);
+h1.Normalization = 'probability';
 title('The histogram of the input')
+xlabel('Vaule'), ylabel('Probability')
 set(gca,'FontSize',fontSize)
 
 figure(9)
-histogram(squarednoise)
+h2 = histogram(squarednoise);
+h2.Normalization = 'probability';
 title('Histogram of the output, squarer')
-xlim([0, 4.5])
+xlabel('Vaule'), ylabel('Probability')
 set(gca,'FontSize',fontSize)
 
 figure(10)
-histogram(rectifiednoise)
+h3=histogram(rectifiednoise);
+h3.Normalization = 'probability';
 title('Histogram of the output, halfwave rectifier')
+xlabel('Vaule'), ylabel('Probability')
 set(gca,'FontSize',fontSize)
 
 figure(11)
-histogram(AMSMnoise)
-title('Histogram of the output, AMSC-modulator')
+h4 = histogram(AMSMnoise);
+h4.Normalization = 'probability';
+title('Histogram of the output, AM-SC')
+xlabel('Vaule'), ylabel('Probability')
 set(gca,'FontSize',fontSize)
 
