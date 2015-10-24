@@ -1,7 +1,7 @@
 close all
 clear all
 constants
-fontSize = 10.5;
+fontSize = 16;
 
 RyHighorder = R0*(rectpuls(theta/(2*theta0)) + rectpuls((1-theta)/(2*theta0)));
 ryHighorder = 2*theta0*sinc(2*theta0*tau);
@@ -53,18 +53,18 @@ xlabel('Normalized frequency, \theta')
 set(gca,'FontSize',fontSize)
 
 figure(3)
-plot(0:1/(length(rawdecimatedPSD)-1):1, rawdecimatedPSD)
+plot(0:1/(length(rawalternatingPSD)-1):1, rawalternatingPSD)
 hold on
-plot(0:1/(length(RyDecimated)-1):1, RyDecimated, 'r')
+plot(0:1/(length(RyAlternating)-1):1, RyAlternating, 'r')
 hold off
-legend('Estimate', 'Theoretical'), title('PSD of decimated signal,raw')
+legend('Estimate', 'Theoretical'), title('PSD of alternating signal,raw')
 xlabel('Normalized frequency, \theta')
 set(gca,'FontSize',fontSize)
 
 figure(4)
-plot(0:1/(length(rawalternatingPSD)-1):1, rawalternatingPSD)
+plot(0:1/(length(rawdecimatedPSD)-1):1, rawdecimatedPSD)
 hold on
-plot(0:1/(length(RyAlternating)-1):1, RyAlternating, 'r')
+plot(0:1/(length(RyDecimated)-1):1, RyDecimated, 'r')
 hold off
 legend('Estimate', 'Theoretical'), title('PSD of decimated signal,raw')
 xlabel('Normalized frequency, \theta')

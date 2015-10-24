@@ -88,7 +88,7 @@ hold on
 plot(0:1/(length(RyRectified)-1):1, RyRectified, 'r')
 hold off
 ylim([0, 0.4]), legend('Estimate', 'Theoretical');
-title('PSD of hald-wave, smoothed vs. theoretical')
+title('PSD of half-wave, smoothed vs. theoretical')
 xlabel('Normalized frequency, \theta')
 set(gca,'FontSize',fontSize)
 
@@ -98,7 +98,7 @@ hold on
 plot(0:1/(length(RyAMSM)-1):1, RyAMSM, 'r')
 hold off
 ylim([0, 0.4]), legend('Estimate', 'Theoretical');
-title('PSD of squarer, smoothed vs. theoretical')
+title('PSD of AM-SC, smoothed vs. theoretical')
 xlabel('Normalized frequency, \theta')
 set(gca,'FontSize',fontSize)
 
