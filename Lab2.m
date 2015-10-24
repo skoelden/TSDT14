@@ -1,7 +1,6 @@
 close all
 clear all
 constants
-fontSize = 10.5;
 
 %filter time discrete
 RyLoworder = R0*abs((1-a+a*exp(1j*2*pi*theta))).^2;
@@ -22,7 +21,7 @@ RyRectified = ryHighorder(1)./(2*pi)*not(theta) + R0/4*(rectpuls(theta/(2*theta0
 RyAMSM = 1/4*(rectpuls((theta-omega0)/(2*theta0)) + rectpuls((theta+omega0)/(2*theta0))) + ...
     1/4*(rectpuls((1-theta+omega0)/(2*theta0)) + rectpuls((1-theta-omega0)/(2*theta0)));
 
-% filtered noise
+% filtered systemnoise
 squarednoise = idealfilterednoise.^2;
 
 rectifiednoise = idealfilterednoise;
@@ -42,14 +41,15 @@ AMSMnoise = idealfilterednoise.*cos(2*pi*omega0*n)';
 %zeropoint = ceil(length(squaredACF)/2);
 
 %% raw estimates of the PSDs
-fontSize = 16;
+fontSize = 12;
 
 figure (1)
 plot(0:1/(length(rawsquaredPSD)-1):1, rawsquaredPSD)
 hold on
 plot(0:1/(length(RySquare)-1):1, RySquare, 'r')
 hold off
-ylim([0, 0.4]),legend('Raw estimate', 'Theoretical'), title ('Raw estimate of Squared function')
+ylim([0, 0.5])
+legend('Raw estimate', 'Theoretical'), title ('Raw estimate of Squared function')
 xlabel('Normalized frequency, \theta')
 set(gca,'FontSize',fontSize)
 
@@ -58,7 +58,7 @@ plot(0:1/(length(rawrectifiedPSD)-1):1, rawrectifiedPSD)
 hold on
 plot(0:1/(length(RyRectified)-1):1, RyRectified, 'r')
 hold off
-ylim([0, 0.4]), legend('Raw estimate', 'Theoretical'), title ('Raw estimate of Half-way rectified')
+ylim([0, 0.4]),legend('Raw estimate', 'Theoretical'), title ('Raw estimate of Half-wave rectified')
 xlabel('Normalized frequency, \theta')
 set(gca,'FontSize',fontSize)
 
@@ -67,7 +67,7 @@ plot(0:1/(length(rawAMSMPSD)-1):1, rawAMSMPSD)
 hold on
 plot(0:1/(length(RyAMSM)-1):1, RyAMSM, 'r')
 hold off
-ylim([0, 0.4]), legend('Raw estimate', 'Theoretical'), title ('Raw estimate of AM-SC modulator')
+ylim([0, 0.4]),legend('Raw estimate', 'Theoretical'), title ('Raw estimate of AM-SC modulator')
 xlabel('Normalized frequency, \theta')
 set(gca,'FontSize',fontSize)
 
@@ -78,7 +78,7 @@ hold on
 plot(0:1/(length(RySquare)-1):1, RySquare, 'r')
 hold off
 ylim([0, 0.6]), legend('Estimate', 'Theoretical');
-title('Comparison of estimated and theoretical PSD for the squarer function')
+title('Estimated versus theoretical PSD for the squarer function')
 xlabel('Normalized frequency, \theta')
 set(gca,'FontSize',fontSize)
 
@@ -88,7 +88,7 @@ hold on
 plot(0:1/(length(RyRectified)-1):1, RyRectified, 'r')
 hold off
 ylim([0, 0.4]), legend('Estimate', 'Theoretical');
-title('Comparison of estimated and theoretical PSD for the half-way rectifier')
+title('Estimated versus theoretical PSD for the half-wave rectifier')
 xlabel('Normalized frequency, \theta')
 set(gca,'FontSize',fontSize)
 
@@ -98,27 +98,34 @@ hold on
 plot(0:1/(length(RyAMSM)-1):1, RyAMSM, 'r')
 hold off
 ylim([0, 0.4]), legend('Estimate', 'Theoretical');
-title('Comparison of estimated and theoretical PSD for the AM-SC modulator')
+title('Estimated versus theoretical PSD for the AM-SC modulator')
 xlabel('Normalized frequency, \theta')
 set(gca,'FontSize',fontSize)
 
-%% Histograms of the outputs
 figure(7)
+plot(0:1/(length(RyHighorder)-1):1, RyHighorder)
+ylim([0, 0.4]), 
+title('PSD of the input')
+xlabel('Normalized frequency, \theta')
+set(gca,'FontSize',fontSize)
+%% Histograms of the outputs
+figure(8)
 histogram(noise)
 title('The histogram of the input')
 set(gca,'FontSize',fontSize)
 
-figure(8)
+figure(9)
 histogram(squarednoise)
 title('Histogram of the output, squarer')
-set(gca,'FontSize',fontSize)
-
-figure(9)
-histogram(rectifiednoise)
-title('Histogram of the output, halfway rectifier')
+xlim([0, 4.5])
 set(gca,'FontSize',fontSize)
 
 figure(10)
+histogram(rectifiednoise)
+title('Histogram of the output, halfwave rectifier')
+set(gca,'FontSize',fontSize)
+
+figure(11)
 histogram(AMSMnoise)
 title('Histogram of the output, AMSC-modulator')
 set(gca,'FontSize',fontSize)
