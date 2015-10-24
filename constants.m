@@ -18,6 +18,6 @@ rect2 = [-0.5:0.00001:0.5]>-theta0;
 rect = rect1 .* rect2;
 
 noise = randn(N,1);
-[bbutter, abutter] = butter(30, 2*theta0);
+[bbutter, abutter] = butter(10, 2*theta0);
 idealfilterednoise = filter(bbutter, abutter, noise);
 omega0 = 0.2;

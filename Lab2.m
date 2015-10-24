@@ -42,6 +42,8 @@ AMSMnoise = idealfilterednoise.*cos(2*pi*omega0*n)';
 %zeropoint = ceil(length(squaredACF)/2);
 
 %% raw estimates of the PSDs
+fontSize = 16;
+
 figure (1)
 plot(0:1/(length(rawsquaredPSD)-1):1, rawsquaredPSD)
 hold on
@@ -75,7 +77,7 @@ plot(0:1/(length(squaredPSD)-1):1, squaredPSD)
 hold on
 plot(0:1/(length(RySquare)-1):1, RySquare, 'r')
 hold off
-ylim([0, 0.4]), legend('Estimate', 'Theoretical');
+ylim([0, 0.6]), legend('Estimate', 'Theoretical');
 title('Comparison of estimated and theoretical PSD for the squarer function')
 xlabel('Normalized frequency, \theta')
 set(gca,'FontSize',fontSize)

@@ -28,7 +28,7 @@ HOnoise = filter(bbutter, abutter, noise);
 [hoACFundersm, hoPSDundersm] = ACFe(HOnoise, 'bar', 's', 3001 );
 
 %Averaged periodogram
-bins = 256;
+bins = 512;
 len = length(LOnoise)/bins;
 tmp = zeros([2*len-1 1])/bins;
 for i = [0:bins-1]
@@ -37,7 +37,7 @@ for i = [0:bins-1]
 end
 loPSDav = tmp/bins;
 
-bins = 256;
+bins = 512;
 len = length(HOnoise)/bins;
 tmp = zeros([2*len-1 1])/bins;
 for i = [0:bins-1]
